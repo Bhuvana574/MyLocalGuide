@@ -79,10 +79,20 @@ public class ListViewData : MonoBehaviour
                 Text[] theText = thePrefab.GetComponentsInChildren<Text>();
                 theText[0].text = root.firstName;
                 theText[1].text = root.age.ToString();
-
+                Button button = thePrefab.GetComponentInChildren<Button>();
+                button.name =i.ToString();
+                AddListener(button, url);
+                double myLat = 10.0;
+                double myLon = 15.0;
+                string myUrl = "https://www.google.com/maps/@" + myLat + "," + myLon ;
+                AddListener(button, myUrl);
             }
 
         }
+    }
+    void AddListener(Button button,string url)
+    {
+        button.onClick.AddListener(() => Application.OpenURL(url));
     }
 
     public class Address
